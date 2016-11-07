@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">LearnDialog</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="alert_dialog">警告对话框</string>
+    <string name="pgs_dialog">进度对话框</string>
+    <string name="dp_dialog">日期选择对话框</string>
+    <string name="tp_dialog">时间对话框</string>
+    <string name="custom_dialog">自定义对话框</string>
+</resources>
