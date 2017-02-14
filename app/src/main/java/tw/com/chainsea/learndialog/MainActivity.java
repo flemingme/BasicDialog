@@ -39,6 +39,30 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         lvDialog = ((ListView) findViewById(R.id.listView));
+        initEvent();
+    }
+
+    public void onDialogClick(View view) {
+        switch (view.getId()) {
+            case R.id.bt_alert:
+                showAlertDialog();
+                break;
+            case R.id.bt_pgs:
+                showPgsDialog();
+                break;
+            case R.id.bt_date:
+                showDatePickerDialog();
+                break;
+            case R.id.bt_time:
+                showTimePickerDialog();
+                break;
+            case R.id.bt_custom:
+                showCustomDialog();
+                break;
+        }
+    }
+
+    private void initEvent() {
         arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.dialogs));
         lvDialog.setAdapter(arrayAdapter);
         lvDialog.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -116,8 +140,9 @@ public class MainActivity extends AppCompatActivity {
                         sb.append("、");
                     }
                 }
-                Log.d(TAG, "onClick: " + sb.deleteCharAt(sb.length() - 1).toString());
-                toast("你选择的是：" + sb.deleteCharAt(sb.length() - 1).toString());
+                StringBuilder result = sb.deleteCharAt(sb.length() - 1);
+                Log.d(TAG, "onClick: " + result.toString());
+                toast("你选择的是：" + result.toString());
             }
         });
         builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
@@ -143,26 +168,6 @@ public class MainActivity extends AppCompatActivity {
         });
         AlertDialog dialog = builder.create();
         dialog.show();
-    }
-
-    public void onDialogClick(View view) {
-        switch (view.getId()) {
-            case R.id.bt_alert:
-                showAlertDialog();
-                break;
-            case R.id.bt_pgs:
-                showPgsDialog();
-                break;
-            case R.id.bt_date:
-                showDatePickerDialog();
-                break;
-            case R.id.bt_time:
-                showTimePickerDialog();
-                break;
-            case R.id.bt_custom:
-                showCustomDialog();
-                break;
-        }
     }
 
     private void showAlertDialog() {
@@ -324,6 +329,7 @@ public class MainActivity extends AppCompatActivity {
             textView.setGravity(Gravity.CENTER_VERTICAL);
             textView.setLayoutParams(layoutParams);
             textView.setCompoundDrawablesWithIntrinsicBounds(getItem(position), 0, 0, 0);
+            textView.setPadding(40, 0, 40, 0);
             textView.setCompoundDrawablePadding(8);
             return textView;
         }
