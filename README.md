@@ -284,4 +284,4 @@ builder.setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener(
 
 这里是创建一个布局文件，当然也可以直接定义控件，但是要注意布局的美观就可以了。
 
-<img src="gif/device-2017-02-14-141412.gif" width="40%"></img>
+<img src='http://i1.piimg.com/1949/0510653c959c46aa.gif' width="40%">
