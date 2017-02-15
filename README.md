@@ -1,5 +1,5 @@
 # LearnDialog
-Android学习小demo之对话框
+Android学习demo之对话框
 
 Android中对话框的展示，对人机交互有着重要的意义，常见的对话框包括：
 
@@ -23,7 +23,7 @@ Android中对话框的展示，对人机交互有着重要的意义，常见的�
 
 下面对这些对话框的使用进行说明：
 
-1.警告对话框
+**1.警告对话框**
 
 ```java
 private void showAlertDialog() {
@@ -57,7 +57,7 @@ private void showAlertDialog() {
 }
 ```
 
-2.进度对话框
+**2.进度对话框**
 
 ```java
 private void showPgsDialog() {
@@ -92,7 +92,7 @@ private void showPgsDialog() {
 }
 ```
 
-3.日期选择对话框
+**3.日期选择对话框**
 
 ```java
 private void showDatePickerDialog() {
@@ -113,7 +113,7 @@ private void showDatePickerDialog() {
 
 在构造DatePickerDialog的时候需要传入初始化的year,month,day，monthOfYear是从0开始的，所以得到的月份要记得加1。
 
-4.时间选择对话框
+**4.时间选择对话框**
 
 ```java
 private void showTimePickerDialog() {
@@ -133,7 +133,7 @@ private void showTimePickerDialog() {
 
 在构造TimePickerDialog时要传入初始化的hour和minute，第五个参数是布尔型变量，是否是24小时制，传入true设置24小时制，反之亦然。
 
-注意：在使用DatePickerDialog和TimePickerDialog时，要解决兼容性的问题，在回调onDateSet时，4.3系统后会回调两次，而4.3以下的则回调一次，这样很影响业务逻辑，要解决这个问题，需要重写DatePickerDialog的onStop方法，将super.onStop()方法去掉即可。详细可参考http://blog.csdn.net/wxuande/article/details/44002791
+**注意：**在使用DatePickerDialog和TimePickerDialog时，要解决兼容性的问题，在回调onDateSet时，4.3系统后会回调两次，而4.3以下的则回调一次，这样很影响业务逻辑，要解决这个问题，需要重写DatePickerDialog的onStop方法，将super.onStop()方法去掉即可。详细可参考http://blog.csdn.net/wxuande/article/details/44002791
 
 ```java
 public class MyDatePickerDialog extends DatePickerDialog {
@@ -154,7 +154,7 @@ public class MyDatePickerDialog extends DatePickerDialog {
 }
 ```
 
-5.普通列表对话框
+**5.普通列表对话框**
 
 ```java
 //核心方法
@@ -167,7 +167,7 @@ builder.setItems(arrayColor, new DialogInterface.OnClickListener() {
 });
 ```
 
-6.单选列表对话框
+**6.单选列表对话框**
 
 ```java
 //核心方法
@@ -182,7 +182,7 @@ builder.setSingleChoiceItems(arrayGender, -1, new DialogInterface.OnClickListene
 
 setSingleChoiceItems的第二个参数是item的index，-1表示不预先选择，0表示选择第一项，以此类推。
 
-7.多选列表对话框
+**7.多选列表对话框**
 
 ```java
 final boolean[] pos = new boolean[arrayFruits.length];
@@ -210,7 +210,7 @@ builder.setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener(
 
 setMultiChoiceItems的第二个参数表示的是被选中的item，null表示不设默认值。
 
-8.带图标的列表对话框
+**8.带图标的列表对话框**
 
 ```java
 builder.setAdapter(new ListItemAdapter(), new DialogInterface.OnClickListener() {
@@ -259,7 +259,7 @@ private class ListItemAdapter extends BaseAdapter {
 }
 ```
 
-9.自定义对话框
+**9.自定义对话框**
 
 ```java
 final View root = LayoutInflater.from(this).inflate(R.layout.dialog_login, null);
