@@ -185,6 +185,7 @@ setSingleChoiceItems的第二个参数是item的index，-1表示不预先选择�
 **7.多选列表对话框**
 
 ```java
+//核心方法
 final boolean[] pos = new boolean[arrayFruits.length];
 builder.setMultiChoiceItems(arrayFruits, null, new DialogInterface.OnMultiChoiceClickListener() {
     @Override
@@ -213,6 +214,7 @@ setMultiChoiceItems的第二个参数表示的是被选中的item，null表示�
 **8.带图标的列表对话框**
 
 ```java
+//核心方法
 builder.setAdapter(new ListItemAdapter(), new DialogInterface.OnClickListener() {
     @Override
     public void onClick(DialogInterface dialog, int which) {
@@ -262,6 +264,7 @@ private class ListItemAdapter extends BaseAdapter {
 **9.自定义对话框**
 
 ```java
+//核心方法
 final View root = LayoutInflater.from(this).inflate(R.layout.dialog_login, null);
 builder.setView(root);
 builder.setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener() {
