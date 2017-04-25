@@ -1,5 +1,4 @@
-# LearnDialog
-Android学习demo之对话框
+# BasicDialog
 
 Android中对话框的展示，对人机交互有着重要的意义，常见的对话框包括：
 
@@ -104,7 +103,8 @@ private void showDatePickerDialog() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int monthOfYear, int dayOfMonth) {
                 Log.d(TAG, "onDateSet: " + year + "." + (monthOfYear + 1) + "." + dayOfMonth);
-                toast("你选择的日期是：" + year + "." + (monthOfYear + 1) + "." + dayOfMonth);
+                String date = String.format(Locale.CHINESE, "%04d.%02d.%02d", year, monthOfYear + 1, dayOfMonth);
+                btDate.setText(date);
             }
         }, year, month, day);
         dialog.show();
@@ -124,7 +124,8 @@ private void showTimePickerDialog() {
             @Override
             public void onTimeSet(TimePicker timePicker, int hourOfDay, int minute) {
                 Log.d(TAG, "onTimeSet: " + hourOfDay + ":" + minute);
-                toast("你选择的时间是：" + hourOfDay + ":" + minute);
+                String time = String.format(Locale.CHINESE, "%02d:%02d", hourOfDay, minute);
+                btTime.setText(time);
             }
         }, hour, minute, true);
         dialog.show();
@@ -133,7 +134,8 @@ private void showTimePickerDialog() {
 
 在构造TimePickerDialog时要传入初始化的hour和minute，第五个参数是布尔型变量，是否是24小时制，传入true设置24小时制，反之亦然。
 
-**注意：**在使用DatePickerDialog和TimePickerDialog时，要解决兼容性的问题，在回调onDateSet时，4.3系统后会回调两次，而4.3以下的则回调一次，这样很影响业务逻辑，要解决这个问题，需要重写DatePickerDialog的onStop方法，将super.onStop()方法去掉即可。详细可参考http://blog.csdn.net/wxuande/article/details/44002791
+**注意：**
+在使用DatePickerDialog和TimePickerDialog时，要解决兼容性的问题，在回调onDateSet时，4.3系统后会回调两次，而4.3以下的则回调一次，这样很影响业务逻辑，要解决这个问题，需要重写DatePickerDialog的onStop方法，将super.onStop()方法去掉即可。详细可参考http://blog.csdn.net/wxuande/article/details/44002791
 
 ```java
 public class MyDatePickerDialog extends DatePickerDialog {
@@ -287,4 +289,4 @@ builder.setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener(
 
 这里是创建一个布局文件，当然也可以直接定义控件，但是要注意布局的美观就可以了。
 
-<img src='http://i1.piimg.com/1949/0510653c959c46aa.gif' width="40%">
+<img src="art/ezgif.com-video-to-gif.gif" width="40%">

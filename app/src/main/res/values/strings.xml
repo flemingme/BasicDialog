@@ -1,7 +1,6 @@
 <resources>
-    <string name="app_name">LearnDialog</string>
+    <string name="app_name">BasicDialog</string>
 
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="alert_dialog">警告对话框</string>
     <string name="pgs_dialog">进度对话框</string>
     <string name="dp_dialog">日期选择对话框</string>
@@ -11,31 +10,8 @@
     <string name="cancel">取消</string>
     <string name="exit">退出</string>
     <string name="background">后台运行</string>
-    <string name="login_name">账号:</string>
+    <string name="login_name">账号</string>
     <string name="enter_name">请输入你的账号</string>
-    <string name="login_pwd">密码:</string>
+    <string name="login_pwd">密码</string>
     <string name="enter_pwd">请输入你的密码</string>
-
-    <string-array name="dialogs">
-        <item>普通列表对话框</item>
-        <item>单选列表对话框</item>
-        <item>多选列表对话框</item>
-        <item>带图标的列表对话框</item>
-    </string-array>
-    <string-array name="colors">
-        <item>红色</item>
-        <item>黄色</item>
-        <item>蓝色</item>
-    </string-array>
-    <string-array name="gender">
-        <item>男生</item>
-        <item>女生</item>
-        <item>保密</item>
-    </string-array>
-    <string-array name="fruits">
-        <item>苹果</item>
-        <item>香蕉</item>
-        <item>梨子</item>
-        <item>葡萄</item>
-    </string-array>
 </resources>

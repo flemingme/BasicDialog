@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="dialogs">
+        <item>普通列表对话框</item>
+        <item>单选列表对话框</item>
+        <item>多选列表对话框</item>
+        <item>带图标的列表对话框</item>
+    </string-array>
+    <string-array name="colors">
+        <item>红色</item>
+        <item>黄色</item>
+        <item>蓝色</item>
+    </string-array>
+    <string-array name="gender">
+        <item>男生</item>
+        <item>女生</item>
+        <item>保密</item>
+    </string-array>
+    <string-array name="fruits">
+        <item>苹果</item>
+        <item>香蕉</item>
+        <item>梨子</item>
+        <item>葡萄</item>
+    </string-array>
+</resources>

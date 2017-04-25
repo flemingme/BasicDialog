@@ -1,4 +1,4 @@
-package tw.com.chainsea.learndialog;
+package tw.com.chainsea.basicdialog;
 
 import android.app.DatePickerDialog;
 import android.content.Context;

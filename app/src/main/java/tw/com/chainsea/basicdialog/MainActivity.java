@@ -1,4 +1,4 @@
-package tw.com.chainsea.learndialog;
+package tw.com.chainsea.basicdialog;
 
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
@@ -17,6 +17,7 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -25,24 +26,42 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import java.util.Calendar;
+import java.util.Locale;
 
-import static tw.com.chainsea.learndialog.R.array.gender;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import butterknife.Unbinder;
+
+import static tw.com.chainsea.basicdialog.R.array.gender;
 
 public class MainActivity extends AppCompatActivity {
 
     private final String TAG = getClass().getSimpleName();
-    private ListView lvDialog;
-    private ArrayAdapter<String> arrayAdapter;
+    @BindView(R.id.bt_alert)
+    Button btAlert;
+    @BindView(R.id.bt_pgs)
+    Button btPgs;
+    @BindView(R.id.bt_date)
+    Button btDate;
+    @BindView(R.id.bt_time)
+    Button btTime;
+    @BindView(R.id.bt_custom)
+    Button btCustom;
+    @BindView(R.id.listView)
+    ListView lvDialog;
+    private Unbinder mUnbinder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        lvDialog = ((ListView) findViewById(R.id.listView));
+        mUnbinder = ButterKnife.bind(this);
         initEvent();
     }
 
-    public void onDialogClick(View view) {
+    @OnClick({R.id.bt_alert, R.id.bt_pgs, R.id.bt_date, R.id.bt_time, R.id.bt_custom})
+    public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.bt_alert:
                 showAlertDialog();
@@ -63,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initEvent() {
-        arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.dialogs));
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.dialogs));
         lvDialog.setAdapter(arrayAdapter);
         lvDialog.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -89,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
     private void showRawDialog() {
         final String[] arrayColor = getResources().getStringArray(R.array.colors);
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setIcon(R.mipmap.ic_launcher);
+        builder.setIcon(R.mipmap.ic_dialog);
         builder.setTitle("请选择");
         builder.setItems(arrayColor, new DialogInterface.OnClickListener() {
             @Override
@@ -105,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
     private void showRadioDialog() {
         final String[] arrayGender = getResources().getStringArray(gender);
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setIcon(R.mipmap.ic_launcher);
+        builder.setIcon(R.mipmap.ic_dialog);
         builder.setTitle("请选择");
         builder.setSingleChoiceItems(arrayGender, -1, new DialogInterface.OnClickListener() {
             @Override
@@ -121,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
     private void showCheckBoxDialog() {
         final String[] arrayFruits = getResources().getStringArray(R.array.fruits);
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setIcon(R.mipmap.ic_launcher);
+        builder.setIcon(R.mipmap.ic_dialog);
         builder.setTitle("请问你喜欢吃什么水果？");
         final boolean[] pos = new boolean[arrayFruits.length];
         builder.setMultiChoiceItems(arrayFruits, null, new DialogInterface.OnMultiChoiceClickListener() {
@@ -158,7 +177,7 @@ public class MainActivity extends AppCompatActivity {
     private void showIconDialog() {
         final String[] arrayColor = getResources().getStringArray(R.array.colors);
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setIcon(R.mipmap.ic_launcher);
+        builder.setIcon(R.mipmap.ic_dialog);
         builder.setTitle("请选择");
         builder.setAdapter(new ListItemAdapter(), new DialogInterface.OnClickListener() {
             @Override
@@ -173,7 +192,7 @@ public class MainActivity extends AppCompatActivity {
     private void showAlertDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("提示");
-        builder.setIcon(R.mipmap.ic_launcher);
+        builder.setIcon(R.mipmap.ic_dialog);
         builder.setMessage("您有一笔2千万的汇款在处理，请问是您亲自操作的吗？");
         builder.setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener() {
             @Override
@@ -240,7 +259,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int monthOfYear, int dayOfMonth) {
                 Log.d(TAG, "onDateSet: " + year + "." + (monthOfYear + 1) + "." + dayOfMonth);
-                toast("你选择的日期是：" + year + "." + (monthOfYear + 1) + "." + dayOfMonth);
+                String date = String.format(Locale.CHINESE, "%04d.%02d.%02d", year, monthOfYear + 1, dayOfMonth);
+                btDate.setText(date);
             }
         }, year, month, day);
         dialog.show();
@@ -254,7 +274,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onTimeSet(TimePicker timePicker, int hourOfDay, int minute) {
                 Log.d(TAG, "onTimeSet: " + hourOfDay + ":" + minute);
-                toast("你选择的时间是：" + hourOfDay + ":" + minute);
+                String time = String.format(Locale.CHINESE, "%02d:%02d", hourOfDay, minute);
+                btTime.setText(time);
             }
         }, hour, minute, true);
         dialog.show();
@@ -301,7 +322,7 @@ public class MainActivity extends AppCompatActivity {
 
     private class ListItemAdapter extends BaseAdapter {
 
-        int[] imgIds = {R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher};
+        int[] imgIds = {R.drawable.red_32, R.drawable.orange_32, R.drawable.blue_32};
 
         @Override
         public int getCount() {
@@ -322,16 +343,24 @@ public class MainActivity extends AppCompatActivity {
         public View getView(int position, View convertView, ViewGroup parent) {
             TextView textView = new TextView(MainActivity.this);
             textView.setText(getResources().getStringArray(R.array.colors)[position]);
-            textView.setTextSize(24);
+            textView.setTextSize(18);
             AbsListView.LayoutParams layoutParams = new AbsListView.LayoutParams(
                     AbsListView.LayoutParams.MATCH_PARENT, AbsListView.LayoutParams.WRAP_CONTENT
             );
             textView.setGravity(Gravity.CENTER_VERTICAL);
             textView.setLayoutParams(layoutParams);
             textView.setCompoundDrawablesWithIntrinsicBounds(getItem(position), 0, 0, 0);
-            textView.setPadding(40, 0, 40, 0);
+            textView.setPadding(40, 10, 40, 0);
             textView.setCompoundDrawablePadding(8);
             return textView;
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (mUnbinder != null) {
+            mUnbinder.unbind();
         }
     }
 }

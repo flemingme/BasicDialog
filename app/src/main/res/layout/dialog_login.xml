@@ -24,9 +24,13 @@
 
         <EditText
             android:id="@+id/et_name"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@drawable/et_bg"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:lines="1"
             android:ems="10"
             android:hint="@string/enter_name"
             android:inputType="textPersonName" />
@@ -35,6 +39,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:orientation="horizontal">
 
         <TextView
@@ -47,9 +52,13 @@
 
         <EditText
             android:id="@+id/et_pwd"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:layout_marginLeft="8dp"
+            android:lines="1"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/et_bg"
             android:ems="10"
             android:hint="@string/enter_pwd"
             android:inputType="numberPassword" />
